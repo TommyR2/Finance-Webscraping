@@ -49,9 +49,11 @@ while True:
             headline = row.h1.text
             
             colon = [z for z, letter in enumerate(headline) if letter == ":"]
-            company_name = headline[:colon[0]].title()
-            index = [company_name in item for item in lst].index(True)
-            ticker = df_1['symbol'][index]
+            try:
+                company_name = headline[:colon[0]].title()
+                index = [company_name in item for item in lst].index(True)
+                ticker = df_1['symbol'][index]
+            except Exception as T: Ticker = "Ticker not Found"
 
             #Must connect to Gmail API
             email_sender = 'YOUR EMAIL'
